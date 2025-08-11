@@ -31,22 +31,33 @@ export const useAlarm = () => {
       oscillator.connect(gainNode);
       gainNode.connect(audioContext.destination);
 
-      // Configure alarm sound (beeping pattern)
+      // Configure alarm sound (continuous beeping)
       oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
       oscillator.type = 'square';
 
-      // Create beeping pattern with gain modulation
+      // Create continuous beeping pattern with gain modulation
       const now = audioContext.currentTime;
       gainNode.gain.setValueAtTime(0, now);
       
-      for (let i = 0; i < 10; i++) {
-        const startTime = now + i * 0.5;
-        gainNode.gain.setValueAtTime(0.3, startTime);
-        gainNode.gain.setValueAtTime(0, startTime + 0.2);
-      }
+      // Create a repeating beep pattern that continues indefinitely
+      const createBeepPattern = (startTime: number, duration: number) => {
+        const beepDuration = 0.2;
+        const pauseDuration = 0.3;
+        const totalCycle = beepDuration + pauseDuration;
+        const cycles = Math.ceil(duration / totalCycle);
+        
+        for (let i = 0; i < cycles; i++) {
+          const cycleStart = startTime + i * totalCycle;
+          gainNode.gain.setValueAtTime(0.3, cycleStart);
+          gainNode.gain.setValueAtTime(0, cycleStart + beepDuration);
+        }
+      };
+
+      // Create a long-duration beeping pattern (10 minutes worth)
+      createBeepPattern(now, 600);
 
       oscillator.start();
-      oscillator.stop(now + 5); // Stop after 5 seconds
+      // Don't automatically stop - let it run until manually stopped
 
       oscillatorRef.current = oscillator;
       gainNodeRef.current = gainNode;
