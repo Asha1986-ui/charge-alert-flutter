@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useBattery } from '@/hooks/useBattery';
 import { useAlarm } from '@/hooks/useAlarm';
 import { BatteryDisplay } from './BatteryDisplay';
-import { TargetSlider } from './TargetSlider';
+import { ModernTargetSlider } from './ModernTargetSlider';
 import { MonitoringControls } from './MonitoringControls';
 import { useToast } from '@/hooks/use-toast';
 
@@ -73,36 +73,37 @@ export const BatteryAlarm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20 p-4">
-      <div className="max-w-md mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20 p-4 sm:p-6">
+      <div className="max-w-lg mx-auto space-y-8">
         {/* Header */}
-        <div className="text-center pt-8 pb-4">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Battery Alarm</h1>
-          <p className="text-muted-foreground">Monitor your battery charging progress</p>
+        <div className="text-center pt-4 sm:pt-8 pb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">Battery Alarm</h1>
+          <p className="text-muted-foreground text-lg">Monitor your battery charging progress</p>
         </div>
 
-        {/* Battery Display */}
+        {/* Battery Display - Large Circular Progress */}
         <BatteryDisplay 
           level={battery.level}
           charging={battery.charging}
           supported={battery.supported}
         />
 
-        {/* Target Slider */}
-        <div className="bg-card/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-          <TargetSlider
+        {/* Target Slider - Glassmorphism Panel */}
+        <div className="bg-card/80 backdrop-blur-glass border border-white/10 rounded-2xl p-6 shadow-glass">
+          <ModernTargetSlider
             value={targetPercentage}
             onChange={setTargetPercentage}
           />
         </div>
 
-        {/* Monitoring Controls */}
-        <div className="bg-card/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+        {/* Monitoring Controls - Mobile Optimized */}
+        <div className="bg-card/80 backdrop-blur-glass border border-white/10 rounded-2xl p-6 shadow-glass">
           <MonitoringControls
             isMonitoring={isMonitoring}
             onStart={handleStart}
             onStop={handleStop}
             targetReached={targetReached}
+            charging={battery.charging}
           />
         </div>
       </div>

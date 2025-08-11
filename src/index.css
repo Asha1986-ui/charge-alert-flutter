@@ -45,9 +45,11 @@ All colors MUST be HSL.
     /* Glassmorphism */
     --glass-bg: 220 15% 9% / 0.8;
     --glass-border: 210 40% 98% / 0.1;
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --radius: 1rem;
 

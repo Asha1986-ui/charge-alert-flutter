@@ -90,11 +90,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'battery-fill': {
+					'0%': { strokeDasharray: '0 628' },
+					'100%': { strokeDasharray: '628 0' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.6' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'battery-fill': 'battery-fill 1s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite'
+			},
+			backdropBlur: {
+				'glass': '16px'
+			},
+			boxShadow: {
+				'glass': 'var(--glass-shadow)'
 			}
 		}
 	},
