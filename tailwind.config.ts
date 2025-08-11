@@ -61,6 +61,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				battery: {
+					full: 'hsl(var(--battery-full))',
+					medium: 'hsl(var(--battery-medium))',
+					low: 'hsl(var(--battery-low))',
+					critical: 'hsl(var(--battery-critical))'
 				}
 			},
 			borderRadius: {

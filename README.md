@@ -1,73 +1,127 @@
-# Welcome to your Lovable project
+# Battery Alarm ⚡
 
-## Project info
+A smart battery monitoring app that alerts you when your device reaches a target charge percentage. Built with React, TypeScript, and Capacitor for cross-platform mobile deployment.
 
-**URL**: https://lovable.dev/projects/a5d26fbd-2abe-4e46-bf9b-ce182cb1d44b
+## Features
 
-## How can I edit this code?
+- 🔋 **Real-time Battery Monitoring** - Uses Battery Status API to monitor charging status
+- 🎯 **Target Percentage Setting** - Set charging target between 10%-100% with a smooth slider
+- 🔊 **Audio Alarm** - Plays alarm sound when target is reached
+- 📱 **Mobile Ready** - Works on Android, iOS, and desktop via Capacitor
+- 🎨 **Beautiful UI** - Dark theme with glassmorphism design and smooth animations
+- ⚡ **Smart Controls** - Automatically stops alarm when charger is unplugged
 
-There are several ways of editing your application.
+## Quick Start
 
-**Use Lovable**
+### Web Version
+1. Clone and install dependencies:
+```bash
+git clone <your-repo-url>
+cd battery-alarm
+npm install
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a5d26fbd-2abe-4e46-bf9b-ce182cb1d44b) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. Start development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+3. Open [http://localhost:8080](http://localhost:8080) in your browser
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Mobile Development
 
-**Use GitHub Codespaces**
+To run on mobile devices or emulators:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. **Export to GitHub** via Lovable and clone locally
+2. **Install dependencies:**
+```bash
+npm install
+```
 
-## What technologies are used for this project?
+3. **Build the project:**
+```bash
+npm run build
+```
 
-This project is built with:
+4. **Add mobile platforms:**
+```bash
+# For Android
+npx cap add android
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# For iOS (macOS only)
+npx cap add ios
+```
 
-## How can I deploy this project?
+5. **Sync project:**
+```bash
+npx cap sync
+```
 
-Simply open [Lovable](https://lovable.dev/projects/a5d26fbd-2abe-4e46-bf9b-ce182cb1d44b) and click on Share -> Publish.
+6. **Run on device/emulator:**
+```bash
+# Android
+npx cap run android
 
-## Can I connect a custom domain to my Lovable project?
+# iOS (requires Xcode on macOS)
+npx cap run ios
+```
 
-Yes, you can!
+## Browser Compatibility
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **Full Support**: Chromium-based browsers (Chrome, Edge, Opera)
+- **Demo Mode**: Firefox, Safari (shows demo battery data)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The Battery Status API has limited support across browsers. On unsupported browsers, the app runs in demo mode with simulated battery data.
+
+## Development
+
+Built with:
+- ⚛️ **React 18** with TypeScript
+- 🎨 **Tailwind CSS** with custom design system
+- 📱 **Capacitor** for mobile deployment
+- 🎵 **Web Audio API** for alarm sounds
+- 🔋 **Battery Status API** for real battery monitoring
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── BatteryAlarm.tsx      # Main app component
+│   ├── BatteryDisplay.tsx    # Battery status visualization
+│   ├── TargetSlider.tsx      # Target percentage control
+│   └── MonitoringControls.tsx # Start/stop controls
+├── hooks/
+│   ├── useBattery.ts         # Battery API integration
+│   └── useAlarm.ts           # Audio alarm functionality
+└── assets/
+    └── battery-icon.png      # App icon
+```
+
+## Customization
+
+The app uses a semantic design system defined in `src/index.css`. Key color variables:
+
+- `--battery-full`: Green for healthy battery levels
+- `--battery-medium`: Amber for medium levels  
+- `--battery-low`: Orange for low levels
+- `--battery-critical`: Red for critical levels
+
+## Mobile Deployment Notes
+
+- The app uses Capacitor's hot-reload server during development
+- For production builds, update `capacitor.config.ts` to remove the server configuration
+- iOS deployment requires macOS with Xcode installed
+- Android deployment requires Android Studio
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit changes: `git commit -am 'Add feature'`
+4. Push to branch: `git push origin feature-name`
+5. Submit a pull request
+
+## License
+
+MIT License - feel free to use this project for your own battery monitoring needs!
